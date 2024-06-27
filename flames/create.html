@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel = "stylesheet" href = "styleFLAMES.css" />
+</head>
+
+<body>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://www.chess.com/member/parking_turkeys"><img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/php4xLfS2.png" alt="Chess.com" style="width:50px;height:18px;"></a></li>
+    <li><a href="https://scratch.mit.edu/users/parking_turkeys"><img src="https://en.scratch-wiki.info/w/images/Scratch_logo.svg" alt="Scratch" style="width:50px;height:18px;"></a></li>
+  </ul>
+  <script src = "scriptsForCreate.js"></script>
+  <script src = "scripts.js"></script>
+  <br>
+  <br>
+  <br>
+  <div id = "project">
+  <button onclick = "darkmode()"> Toggle dark mode </button>
+  <form id="form">
+    <input id = "spark" type = "text" placeholder = "spark" />
+    <button type = "submit"> Spark </button>
+  </form>
+  <a href = "home.html" ><button> Go Home </button></a>
+  </div>
+  <style>
+
+  </style>
+  <script type = "module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider,
+        } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        import {
+            getFirestore,
+            addDoc,
+            doc,
+            collection,
+        } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyDtVw1ltQmqFv-Hw2NsvQnmpM7HHA9t0V8",
+          authDomain: "flames----a-social-media.firebaseapp.com",
+          projectId: "flames----a-social-media",
+          storageBucket: "flames----a-social-media.appspot.com",
+          messagingSenderId: "756225538146",
+          appId: "1:756225538146:web:7aab03eecef8727d5c793b",
+          measurementId: "G-3J47N33NH9"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        const db = getFirestore();
+        form.addEventListener("submit", (e) => {
+          e.preventDefault()
+          const currentUser = auth.currentUser;
+          if (!currentUser) {
+            alert("Please login first");
+            return;
+          }
+          const form = document.getElementById("form");
+          const spark = document.getElementById("spark");
+          addDoc(collection(db, "sparks"), {
+            spark: spark.value
+          });
+          alert("Successfully submitted post!");
+          window.location.href = "home.html"
+        });
+  </script>
+</body>
+
+</html>

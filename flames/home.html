@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel = "stylesheet" href = "styleFLAMES.css">
+</head>
+
+<body>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://www.chess.com/member/parking_turkeys"><img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/php4xLfS2.png" alt="Chess.com" style="width:50px;height:18px;"></a></li>
+    <li><a href="https://scratch.mit.edu/users/parking_turkeys"><img src="https://en.scratch-wiki.info/w/images/Scratch_logo.svg" alt="Scratch" style="width:50px;height:18px;"></a></li>
+  </ul>
+  <script src = "scriptsForCreate.js"></script>
+  <script src = "scripts.js"></script>
+  <br>
+  <br>
+  <br>
+  <div id ="project">
+  <button id="login">Sign in with Google</button>
+  <a href = "create.html"><button>create</button> </a>
+  <div id="postsContainer"></div>
+  <script src = "scripts.js"></script>
+  <button onclick = "darkmode()"> Toggle dark mode </button>
+  </div>
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+      import {
+          getAuth,
+          signInWithPopup,
+          GoogleAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDtVw1ltQmqFv-Hw2NsvQnmpM7HHA9t0V8",
+      authDomain: "flames----a-social-media.firebaseapp.com",
+      projectId: "flames----a-social-media",
+      storageBucket: "flames----a-social-media.appspot.com",
+      messagingSenderId: "756225538146",
+      appId: "1:756225538146:web:7aab03eecef8727d5c793b",
+      measurementId: "G-3J47N33NH9"
+    };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+
+      const login = document.getElementById("login");
+      login.addEventListener("click", () => {
+          signInWithPopup(auth, provider).then(() => {
+              window.location.replace("/");
+          document.getElementById("login").innerHTML = ("Change Account");
+          });
+      });
+      import {
+          getFirestore,
+          getDocs,
+          collection,
+      } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+      const db = getFirestore();
+      const div = document.getElementById("div");
+    
+      const posts = await getDocs(collection(db, "sparks"));
+          posts.forEach((doc) => {
+              const element = document.createElement("div");
+              const spark = document.createElement("h1");
+              spark.innerText =
+                  doc.data().spark;
+              element.appendChild(spark);
+              postsContainer.appendChild(element);
+          });
+  </script>
+
+</body>
+
+</html>
