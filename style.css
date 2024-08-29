@@ -72,3 +72,7 @@ h1.header {
   color: #595959;
 }
 
+#fontspecial {
+  font-family : 'happy font';
+  src: url("./happy-font.otf") format("opentype");
+}
